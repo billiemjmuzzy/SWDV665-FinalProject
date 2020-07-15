@@ -1,0 +1,7 @@
+{
+  "name": "golf",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
