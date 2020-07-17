@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 
 export interface Data {
-  movies: string;
+  scorecard: string;
 }
 
 @Component({
@@ -19,14 +19,17 @@ export class ScorecardPage implements OnInit {
 
   constructor(private http: HttpClient) { 
     this.columns = [
-      { name: 'Name' },
-      { name: 'Company' },
-      { name: 'Genre' }
+      { name: 'Hole' },
+      { name: 'Championship' },
+      { name: 'Men Yards' },
+      { name: 'Lady Yards' },
+      { name: 'Handicap' },
+      { name: 'Par'}
     ];
-    this.http.get<Data>('../../assets/movies.json')
+    this.http.get<Data>('../../assets/scorecard.json')
       .subscribe((res) => {
         console.log(res)
-        this.rows = res.movies;
+        this.rows = res.scorecard;
       });
   }
 

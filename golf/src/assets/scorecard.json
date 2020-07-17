@@ -1,0 +1,76 @@
+{
+  "scorecard": [
+      {
+          "hole": 1,
+          "championship": 380,
+          "menYards": 359,
+          "ladyYards": 345,
+          "handicap": 4,
+          "par": 4
+      },
+      {
+          "hole": 2,
+          "championship": 310,
+          "menYards": 298,
+          "ladyYards": 282,
+          "handicap": 4,
+          "par": 4
+      },
+      {
+          "hole": 3,
+          "championship": 490 ,
+          "menYards": 460 ,
+          "ladyYards": 445,
+          "handicap": 5,
+          "par":5
+      },
+      {
+          "hole": 4,
+          "championship": 167,
+          "menYards": 157 ,
+          "ladyYards": 121 ,
+          "handicap": 8,
+          "par": 3
+      },
+      {
+          "hole": 5,
+          "championship": 386,
+          "menYards": 374 ,
+          "ladyYards": 305,
+          "handicap": 1,
+          "par": 4
+      },
+      {
+          "hole": 6,
+          "championship": 490 ,
+          "menYards": 473,
+          "ladyYards": 381 ,
+          "handicap": 3,
+          "par": 5
+      },
+      {
+          "hole": 7,
+          "championship": 160 ,
+          "menYards": 144,
+          "ladyYards": 127 ,
+          "handicap": 6,
+          "par": 3
+      },
+      {
+          "hole": 8,
+          "championship": 357 ,
+          "menYards": 333,
+          "ladyYards": 324,
+          "handicap": 9,
+          "par": 4
+      },
+      {
+          "hole": 9,
+          "championship": 412,
+          "menYards": 392,
+          "ladyYards": 365 ,
+          "handicap": 2,
+          "par": 4
+      }
+  ]
+}
