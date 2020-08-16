@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { TournamentService } from './tournament.service.';
+import { TournamentService } from './tournament.service';
 
 @Injectable({
   providedIn: 'root'
