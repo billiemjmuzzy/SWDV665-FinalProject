@@ -12,12 +12,16 @@ const routes: Routes = [
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
       {
+        path: 'auth',
+        loadChildren: () => import('../auth/auth.module').then(m => m.AuthPageModule)
+      },
+      {
         path: 'rules',
         loadChildren: () => import('../rules/rules.module').then(m => m.RulesPageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'scorecard',
+        loadChildren: () => import('../scorecard/scorecard.module').then(m => m.ScorecardPageModule)
       },
       {
         path: '',
