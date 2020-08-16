@@ -8,8 +8,8 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'about',
+        loadChildren: () => import('../about/about.module').then(m => m.AboutPageModule)
       },
       {
         path: 'auth',
@@ -20,19 +20,23 @@ const routes: Routes = [
         loadChildren: () => import('../rules/rules.module').then(m => m.RulesPageModule)
       },
       {
+        path: 'tournament',
+        loadChildren: () => import('../tournament/tournament.module').then(m => m.TournamentPageModule)
+      },
+      {
         path: 'scorecard',
         loadChildren: () => import('../scorecard/scorecard.module').then(m => m.ScorecardPageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/about',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/about',
     pathMatch: 'full'
   }
 ];
