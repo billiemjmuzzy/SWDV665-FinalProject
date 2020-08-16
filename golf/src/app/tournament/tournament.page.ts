@@ -16,6 +16,7 @@ export class TournamentPage implements OnInit {
   constructor(private toastCtrl: ToastController, private alertController: AlertController, private dataService: TournamentService, private inputDialogService: InputDialogService) {
 
   }
+  
 
   ngOnInit() {
   }
