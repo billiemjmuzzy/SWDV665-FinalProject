@@ -21,40 +21,40 @@ export class TournamentPage implements OnInit {
   }
 
   loadItems() {
-    return this.dataService.items;
+    return this.dataService.player;
   }
 
 
-  addItem() {
-    console.log("Adding Item");
+  addPlayer() {
+    console.log("Adding Player");
     this.inputDialogService.showPrompt();
   }
 
 
-  async editItem(item, index) {
-    console.log("Editing ", item, index);
+  async editPlayer(player, index) {
+    console.log("Editing ", player, index);
     const toast = await this.toastCtrl.create({
-      message: 'Editing ' + item.name,
+      message: 'Editing ' + player.name,
       duration: 3000,
       position: 'top'
     });
 
     toast.present();
-    this.inputDialogService.showPrompt(item, index);
+    this.inputDialogService.showPrompt(player, index);
   }
 
 
 
-  async removeItem(item, index) {
-    console.log("Removing ", item, index);
+  async removePlayer(player, index) {
+    console.log("Removing ", player, index);
     const toast = await this.toastCtrl.create({
-      message: 'Removing ' + item.name,
+      message: 'Removing ' + player.name,
       duration: 3000,
       position: 'top'
     });
 
     toast.present();
-    this.dataService.removeItem(index);
+    this.dataService.removePlayer(index);
 
 
   }

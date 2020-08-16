@@ -5,25 +5,25 @@ import { Injectable } from '@angular/core';
 })
 export class TournamentService {
 
-  items = [];
+  player = [];
 
 
   constructor() { }
 
-  getItems() {
-    return this.items;
+  getPlayer() {
+    return this.player;
   }
 
-  addItem(item) {
-    this.items.push(item);
+  addPlayer(player) {
+    this.player.push(player);
   }
 
-  removeItem(index) {
-    this.items.splice(index, 1);
+  removePlayer(index) {
+    this.player.splice(index, 1);
   }
 
-  editItem(item, index) {
-    this.items[index] = item;
+  editPlayer(player, index) {
+    this.player[index] = player;
   }
 
 }

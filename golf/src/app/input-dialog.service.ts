@@ -9,23 +9,17 @@ export class InputDialogService {
 
   constructor(private alertController: AlertController, private dataService: TournamentService ) { }
 
-  async showPrompt(item?, index?) {
+  async showPrompt(Player?, index?) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: item ? 'Edit Item' : 'Add Item',
-      message: item ? "Please edit grocery list." : "Please enter item to add to grocery list.",
+      header: Player ? 'Edit Player' : 'Add Player',
+      message: Player ? "Please edit player name." : "Please enter Player to add to tournament.",
       inputs: [
         {
           name: 'name',
           type: 'text',
           placeholder: 'name',
-          value: item ? item.name : null
-        },
-        {
-          name: 'quantity',
-          type: 'number',
-          placeholder: 'quantity',
-          value: item ? item.quantity : null
+          value: Player ? Player.name : null
         }
       ],
       buttons: [
@@ -33,18 +27,18 @@ export class InputDialogService {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: item => {
+          handler: Player => {
             console.log('Confirm Cancel');
           }
         }, {
           text: 'Save',
-          handler: item => {
-            console.log('Save clicked', item);
+          handler: Player => {
+            console.log('Save clicked', Player);
             if (index !== undefined) {
-              this.dataService.editItem(item, index)
+              this.dataService.editPlayer(Player, index)
             }
             else {
-              this.dataService.addItem(item);
+              this.dataService.addPlayer(Player);
             }
 
           }
