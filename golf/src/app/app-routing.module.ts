@@ -1,21 +1,17 @@
 // app-routing.module.ts
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },  {
-    path: 'game',
-    loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
-  }
-
+  { path: '', redirectTo: 'about', pathMatch: 'full' },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule) },
+  { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutPageModule) },
+  { path: 'rules', loadChildren: () => import('./Rules/Rules.module').then(m => m.RulesPageModule) },
+  { path: 'tournament', loadChildren: () => import('./tournament/tournament.module').then(m => m.TournamentPageModule) },
+  { path: 'scorecard', loadChildren: () => import('./scorecard/scorecard.module').then(m => m.ScorecardPageModule) }
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
