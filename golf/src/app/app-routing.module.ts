@@ -27,7 +27,11 @@ const routes: Routes = [
     path: 'scorecard',
     loadChildren: () => import('./scorecard/scorecard.module').then(m => m.ScorecardPageModule),
     canLoad: [AuthGuard]
+  },  {
+    path: 'play',
+    loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
   }
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

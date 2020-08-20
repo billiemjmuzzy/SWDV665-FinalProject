@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tournament"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Play</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="secondary">1st Hole</ion-card-title>  
+    </ion-card-header>
+  
+    <ion-card-content>
+      <form onsubmit="processForm(event)">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="stacked">Puts <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" oninput="handleFirstNameValue(event)"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Notes</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+        </ion-list>
+
+        <div class="ion-padding">
+          <ion-button expand="block" color="secondary" type="submit" class="ion-no-margin">
+            2nd Hole
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
