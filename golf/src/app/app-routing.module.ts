@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'about', pathMatch: 'full' },
+  { path: '', redirectTo: 'tournament', pathMatch: 'full' },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule) },
   {
     path: 'about',
@@ -27,7 +27,8 @@ const routes: Routes = [
     path: 'scorecard',
     loadChildren: () => import('./scorecard/scorecard.module').then(m => m.ScorecardPageModule),
     canLoad: [AuthGuard]
-  },  {
+  },
+  {
     path: 'play',
     loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
   }
