@@ -1,7 +1,12 @@
+import { Time } from '@angular/common';
+
 export class Tournament {
   constructor(
     public id: string,
     public player: string,
-    public userId: string
+    public startDate: Date,
+    public startTime: Time,
+    public userId: string,
+
   ) {}
 }

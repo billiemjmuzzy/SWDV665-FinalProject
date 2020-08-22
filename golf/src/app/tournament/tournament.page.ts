@@ -41,12 +41,15 @@ export class TournamentPage implements OnInit {
       .then(loadingEl => {
         loadingEl.present();
         return this.tournamentService.addTournament(
-          this.form.value.player
+          this.form.value.player,
+          this.form.value.startDate,
+          this.form.value.startTime
+
         )
           .subscribe(() => {
             loadingEl.dismiss();
             this.form.reset();
-            this.router.navigate(['/tournament']);
+            this.router.navigate(['/play']);
         })
       
     })

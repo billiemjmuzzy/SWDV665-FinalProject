@@ -5,9 +5,12 @@ import { take, map, tap, delay, switchMap } from 'rxjs/operators';
 
 import { Tournament } from './tournament.model';
 import { AuthService } from '../auth/auth.service';
+import { Time } from '@angular/common';
 
 interface TournamentData {
   player: string;
+  startDate: Date,
+  startTime: Time,
   userId: string;
   }
 
@@ -27,7 +30,9 @@ export class TournamentService {
   constructor(private authService: AuthService, private http: HttpClient) { }
 
   addTournament(
-    player: string
+    player: string,
+    startDate: Date,
+    startTime: Time
   ) {
     let generatedId: string;
     let fetchedUserId: string;
@@ -46,8 +51,9 @@ export class TournamentService {
         newTournament = new Tournament(
           Math.random().toString(),
           player,
+          startDate,
+          startTime,
           fetchedUserId,
-
         );
         return this.http.post<{ name: string }>(
           `https://golf-app-66095.firebaseio.com/tournaments.json?auth=${token}`,
