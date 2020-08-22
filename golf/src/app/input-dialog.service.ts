@@ -1,25 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Tournament } from './tournament/tournament.model';
+import { Subscription } from 'rxjs';
+import { Injectable, OnDestroy, OnInit} from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { TournamentService } from './tournament.service';
+import { TournamentService } from './tournament/tournament.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InputDialogService {
+export class InputDialogService implements OnInit, OnDestroy {
+  inputs: Tournament[];
+  private tournamentSub: Subscription;
 
-  constructor(private alertController: AlertController, private dataService: TournamentService ) { }
+  constructor(
+    private dataService: TournamentService,
+    private alertController: AlertController) { }
+  
+    ngOnInit() {
+      this.tournamentSub = this.dataService.tournament.subscribe(tournament => {
+        this.inputs = tournament;
+      });
+    }
 
-  async showPrompt(Player?, index?) {
+  async showPrompt(Tournament?, index?) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: Player ? 'Edit Player' : 'Add Player',
-      message: Player ? "Please edit player name." : "Please enter Player to add to tournament.",
+      header: Tournament ? 'Edit Tournament' : 'Add Tournament',
+      message: Tournament ? "Please edit player name." : "Please enter Tournament to add to tournament.",
       inputs: [
         {
           name: 'name',
           type: 'text',
           placeholder: 'name',
-          value: Player ? Player.name : null
+          value: Tournament ? Tournament.name : null
         }
       ],
       buttons: [
@@ -27,25 +39,29 @@ export class InputDialogService {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: Player => {
-            console.log('Confirm Cancel');
+          handler: Tournament => {
+            console.log(this.tournamentSub);
           }
         }, {
           text: 'Save',
-          handler: Player => {
-            console.log('Save clicked', Player);
+          handler: Tournament => {
+            console.log('Save clicked', Tournament);
             if (index !== undefined) {
-              this.dataService.editPlayer(Player, index)
+              this.dataService.editTournament(Tournament, index)
             }
             else {
-              this.dataService.addPlayer(Player);
+              this.dataService.addTournament(Tournament)
             }
-
           }
         }
       ]
     });
     await alert.present();
+  }
+  ngOnDestroy() {
+    if (this.tournamentSub) {
+      this.tournamentSub.unsubscribe();
+    }
   }
 
 }

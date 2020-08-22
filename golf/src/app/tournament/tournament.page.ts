@@ -1,8 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
-import { TournamentService } from '../tournament.service';
-import { InputDialogService } from '../input-dialog.service';
+import { Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+
+import { TournamentService } from './tournament.service';
+import { switchMap } from 'rxjs/operators';;
 
 @Component({
   selector: 'app-tournament',
@@ -10,54 +14,41 @@ import { InputDialogService } from '../input-dialog.service';
   styleUrls: ['./tournament.page.scss'],
 })
 export class TournamentPage implements OnInit {
+  form: FormGroup;
 
-  title = "Set-up Tournament";
-
-  constructor(private toastCtrl: ToastController, private alertController: AlertController, private dataService: TournamentService, private inputDialogService: InputDialogService) {
-
-  }
-  
+  constructor(
+    private tournamentService: TournamentService,
+    private router: Router,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-  }
-
-  loadItems() {
-    return this.dataService.player;
-  }
-
-
-  addPlayer() {
-    console.log("Adding Player");
-    this.inputDialogService.showPrompt();
-  }
-
-
-  async editPlayer(player, index) {
-    console.log("Editing ", player, index);
-    const toast = await this.toastCtrl.create({
-      message: 'Editing ' + player.name,
-      duration: 3000,
-      position: 'top'
+    this.form = new FormGroup({
+      player: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required]
+      })
     });
-
-    toast.present();
-    this.inputDialogService.showPrompt(player, index);
   }
 
-
-
-  async removePlayer(player, index) {
-    console.log("Removing ", player, index);
-    const toast = await this.toastCtrl.create({
-      message: 'Removing ' + player.name,
-      duration: 3000,
-      position: 'top'
-    });
-
-    toast.present();
-    this.dataService.removePlayer(index);
-
-
+  onAddTournament() {
+    if (!this.form.valid) {
+      return;
+    }
+    this.loadingCtrl
+    .create({
+      message: 'Creating tournament...'
+    })
+      .then(loadingEl => {
+        loadingEl.present();
+        return this.tournamentService.addTournament(
+          this.form.value.player
+        )
+          .subscribe(() => {
+            loadingEl.dismiss();
+            this.form.reset();
+            this.router.navigate(['/tournament']);
+        })
+      
+    })
   }
-
 }

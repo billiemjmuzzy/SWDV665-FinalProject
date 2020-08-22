@@ -3,57 +3,29 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title>Tournament</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-list-header>
-      Players
-    </ion-list-header>
-    <div class="ion-text-center">
-      <h3 *ngIf="loadItems().length === 0">
-        No players<br/>
-        Please click on the <ion-icon name="add-circle-outline"></ion-icon> to add players. 
-      </h3>
-    </div>
-    <ion-item-sliding *ngFor="let player of loadItems(); let i = index">
+
+<ion-content fullscreen>
+  <ion-card>
+    <form [formGroup]="form">
       <ion-item>
-        <ion-label>{{player.name}}</ion-label>
-        <ion-note slot="end">{{player.quantity}}</ion-note>
+        <ion-label position="floating">Player</ion-label>
+        <ion-input
+          type="text"
+          autocomplete
+          autocorrect
+          formControlName="player"
+        ></ion-input>
       </ion-item>
-      <ion-item-options side="end">
-        <ion-button (click)="editPlayer(player, i)" color="primary" icon-start>
-          <ion-icon name="create"></ion-icon>
-          Edit
-        </ion-button>
-        <ion-button (click)="removePlayer(player, i)" color="danger" icon-start>
-          <ion-icon name="trash"></ion-icon>
-          Done
-        </ion-button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="addPlayer()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-    <ion-item-divider></ion-item-divider>
-    <ion-list-header>
-      Tournament Time
-    </ion-list-header>
-    <ion-item>
-          <ion-label>Start Date</ion-label>
-          <ion-datetime value="Date.now()" placeholder="Select Date"></ion-datetime>
-        </ion-item>
-        <ion-item>
-          <ion-label>Start Time</ion-label>
-          <ion-datetime display-format="h:mm A" picker-format="h:mm A" display-timezone="America/Chicago"  placeholder="Select Time" ></ion-datetime>
-        </ion-item>
-  </ion-list>
-  <div class="ion-padding">
-    <ion-button routerLink="/play" expand="block" type="submit" class="ion-no-margin">Play</ion-button>
-  </div>
-
-
+      <ion-button
+        color="secondary"
+        (click)="onAddTournament()"
+        [disabled]="!form.valid"
+      >
+        Submit
+      </ion-button>
+    </form>
+  </ion-card>
 </ion-content>
