@@ -26,7 +26,18 @@ export class TournamentPage implements OnInit {
       player: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required]
-      })
+      }),
+
+      startDate: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required]
+      }),
+      startTime: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required]
+      }),
+
+
     });
   }
 
@@ -35,9 +46,9 @@ export class TournamentPage implements OnInit {
       return;
     }
     this.loadingCtrl
-    .create({
-      message: 'Creating tournament...'
-    })
+      .create({
+        message: 'Creating tournament...'
+      })
       .then(loadingEl => {
         loadingEl.present();
         return this.tournamentService.addTournament(
@@ -50,8 +61,8 @@ export class TournamentPage implements OnInit {
             loadingEl.dismiss();
             this.form.reset();
             this.router.navigate(['/play']);
-        })
-      
-    })
+          })
+
+      })
   }
 }

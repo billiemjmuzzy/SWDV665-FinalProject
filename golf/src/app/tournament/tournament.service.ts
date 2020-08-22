@@ -9,8 +9,8 @@ import { Time } from '@angular/common';
 
 interface TournamentData {
   player: string;
-  startDate: Date,
-  startTime: Time,
+  startDate: string,
+  startTime: string,
   userId: string;
   }
 

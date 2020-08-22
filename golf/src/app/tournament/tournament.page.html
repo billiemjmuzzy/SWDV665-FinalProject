@@ -23,7 +23,8 @@
         <ion-label position="floating">Start Date</ion-label>
         <ion-datetime
           value="Date.now()"
-          placeholder="Select Date"
+
+          formControlName= "startDate"
         ></ion-datetime>
       </ion-item>
       <ion-item>
@@ -32,7 +33,7 @@
           display-format="h:mm A"
           picker-format="h:mm A"
           display-timezone="America/Chicago"
-          placeholder="Select Time"
+          formControlName="startTime"
         >
         </ion-datetime>
       </ion-item>
