@@ -41,7 +41,7 @@ export class AuthPage implements OnInit {
             console.log(resData);
             this.isLoading = false;
             loadingEl.dismiss();
-            this.router.navigateByUrl('/about');
+            this.router.navigateByUrl('/tournament');
           },
           errRes => {
             loadingEl.dismiss();

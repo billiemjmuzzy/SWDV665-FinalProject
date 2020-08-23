@@ -9,8 +9,17 @@ const routes: Routes = [
   { path: '', redirectTo: 'tournament', pathMatch: 'full' },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule) },
   {
-    path: 'about',
-    loadChildren: () => import('./about/about.module').then(m => m.AboutPageModule),
+    path: 'tournament',
+    loadChildren: () => import('./tournament/tournament.module').then(m => m.TournamentPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'play',
+    loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
+  },
+  {
+    path: 'scorecard',
+    loadChildren: () => import('./scorecard/scorecard.module').then(m => m.ScorecardPageModule),
     canLoad: [AuthGuard]
   },
   {
@@ -19,19 +28,13 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: 'tournament',
-    loadChildren: () => import('./tournament/tournament.module').then(m => m.TournamentPageModule),
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then(m => m.AboutPageModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: 'scorecard',
-    loadChildren: () => import('./scorecard/scorecard.module').then(m => m.ScorecardPageModule),
-    canLoad: [AuthGuard]
-  },
-  {
-    path: 'play',
-    loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
-  }
+  
+  
+ 
 
 ];
 @NgModule({
